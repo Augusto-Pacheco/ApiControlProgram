@@ -36,12 +36,27 @@ namespace ApiControlProgram.Controllers
         [ProducesResponseType(200, Type = typeof(Project))]
         [ProducesResponseType(400)]
 
-        public IActionResult GetProject(int id)
+        public IActionResult GetProject(int ProjectId)
         {
-            if (!_ProjectInterface.ProjectExist(id))
+            if (!_ProjectInterface.ProjectExist(ProjectId))
                 return NotFound();
 
-            var project = _mapper.Map<Project>(_ProjectInterface.GetProject(id));
+            var project = _mapper.Map<ProjectDto>(_ProjectInterface.GetProject(ProjectId));
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(project);
+        }
+
+        [HttpGet("name/{Name}")]
+        [ProducesResponseType(200, Type = typeof(Project))]
+        [ProducesResponseType(400)]
+
+        public IActionResult GetProjectByName(string Name)
+        {
+
+            var project = _mapper.Map<ProjectDto>(_ProjectInterface.GetProjectByName(Name));
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

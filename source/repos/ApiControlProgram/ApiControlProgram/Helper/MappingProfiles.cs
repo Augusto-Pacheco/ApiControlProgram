@@ -10,6 +10,9 @@ namespace ApiControlProgram.Helper
         {
             CreateMap<Companies, CompaniesDto>();
             CreateMap<Project, ProjectDto>();
+            CreateMap<Tasks, TasksDto>();
+            CreateMap<Categories, CategoriesDto>();
+            CreateMap<Types, TypesDto>();
         }
     }
 }

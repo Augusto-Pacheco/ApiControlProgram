@@ -37,6 +37,23 @@ namespace ApiControlProgram.Repositories
             }
         }
 
+        public Project GetProjectByName(string Name)
+        {
+            try
+            {
+                var project = _context.projects.Where(p => p.Name == Name).FirstOrDefault();
+                if(project == null)
+                {
+                    throw new Exception("No se encontró un projecto con el Nombre proporcionado");
+                }
+                return project;
+            }
+            catch (Exception)
+            {
+                throw new Exception("No se pudo completar la operación de red. Intente de nuevo más tarde");
+            }
+        }
+
         public ICollection<Project> GetProjects()
         {
             try
