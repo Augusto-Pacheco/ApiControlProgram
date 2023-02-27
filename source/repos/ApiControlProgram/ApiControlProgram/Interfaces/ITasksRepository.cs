@@ -8,5 +8,7 @@ namespace ApiControlProgram.Interfaces
         Tasks GetTask(int TaskId);
         Tasks GetTaskRegis(string NoRegis);
         bool TaskExist(int TaskId);
+        bool CreateTask(Tasks tasks);
+        bool Save();
     }
 }

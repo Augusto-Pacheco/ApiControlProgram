@@ -13,6 +13,12 @@ namespace ApiControlProgram.Repositories
             _context = context;
         }
 
+        public bool CreateTask(Tasks tasks)
+        {
+            _context.Add(tasks);
+            return Save();
+        }
+
         public Tasks GetTask(int TaskId)
         {
             try
@@ -61,6 +67,12 @@ namespace ApiControlProgram.Repositories
 
                 throw new Exception("No se pudo completar la operación de red. Intente de nuevo más tarde");
             }
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
 
         public bool TaskExist(int TaskId)

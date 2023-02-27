@@ -6,7 +6,9 @@ namespace ApiControlProgram.Interfaces
     {
         ICollection<Companies> GetCompanies();
         Companies GetCompany(int CompanyId);
-        Companies GetCompany(string Name);
+        Companies GetCompanyByName(string Name);
         bool CompanyExist(int CompanyId);
+        bool CreateCompany(Companies companies);
+        bool Save();
     }
 }

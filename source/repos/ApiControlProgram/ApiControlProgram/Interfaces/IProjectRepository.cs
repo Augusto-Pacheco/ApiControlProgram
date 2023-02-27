@@ -8,5 +8,7 @@ namespace ApiControlProgram.Interfaces
         Project GetProject(int ProjectId);
         Project GetProjectByName(string Name);
         bool ProjectExist(int ProjectId);
+        bool CreateProject(Project project);
+        bool Save();
     }
 }

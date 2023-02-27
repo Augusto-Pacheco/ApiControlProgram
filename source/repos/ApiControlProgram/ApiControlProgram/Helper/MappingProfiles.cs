@@ -9,10 +9,19 @@ namespace ApiControlProgram.Helper
         public MappingProfiles()
         {
             CreateMap<Companies, CompaniesDto>();
+            CreateMap<CompaniesDto, Companies>();
+
             CreateMap<Project, ProjectDto>();
+            CreateMap<ProjectDto, Project>();
+
             CreateMap<Tasks, TasksDto>();
+            CreateMap<TasksDto, Tasks>();
+
             CreateMap<Categories, CategoriesDto>();
+            CreateMap<CategoriesDto, Categories>();
+
             CreateMap<Types, TypesDto>();
+            CreateMap<TypesDto, Types>();
         }
     }
 }

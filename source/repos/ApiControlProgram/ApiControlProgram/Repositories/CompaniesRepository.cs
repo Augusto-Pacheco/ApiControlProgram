@@ -55,9 +55,21 @@ namespace ApiControlProgram.Repositories
             }
         }
 
-        public Companies GetCompany(string Name)
+        public Companies GetCompanyByName(string Name)
         {
-            throw new NotImplementedException();
+            return _context.Companies.Where(c => c.Name == Name).FirstOrDefault();
+        }
+
+        public bool CreateCompany(Companies companies)
+        {
+             _context.Add(companies);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
     }
 }

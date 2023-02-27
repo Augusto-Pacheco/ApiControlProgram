@@ -66,5 +66,17 @@ namespace ApiControlProgram.Repositories
                 throw new Exception("No se pudo completar la operación de red. Intente de nuevo más tarde");
             }
         }
+
+        public bool CreateProject(Project project)
+        {
+            _context.Add(project);
+            return Save();
+        }
+
+        public bool Save()
+        {
+           var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
     }
 }
