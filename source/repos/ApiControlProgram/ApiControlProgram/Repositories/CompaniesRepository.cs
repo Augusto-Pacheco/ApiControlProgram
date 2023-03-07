@@ -71,5 +71,17 @@ namespace ApiControlProgram.Repositories
             var saved = _context.SaveChanges();
             return saved > 0 ? true : false;
         }
+
+        public bool UpdateCompany(Companies companies)
+        {
+           _context.Update(companies);
+            return Save();
+        }
+
+        public bool DeleteCompanies(Companies company)
+        {
+            _context.Remove(company);
+            return Save();
+        }
     }
 }

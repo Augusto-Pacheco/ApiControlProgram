@@ -1,6 +1,7 @@
 ﻿using ApiControlProgram.Dto;
 using ApiControlProgram.Interfaces;
 using ApiControlProgram.Model;
+using ApiControlProgram.Repositories;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
@@ -95,6 +96,55 @@ namespace ApiControlProgram.Controllers
             }
 
             return Ok("Tarea agregada exitosamente.");
+        }
+
+        [HttpPatch("{taskId}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateTask(int taskId, [FromBody] TasksDto updateTask)
+        {
+            if (updateTask == null)
+                return BadRequest(ModelState);
+
+            if (taskId != updateTask.TaskId)
+                return BadRequest(ModelState);
+
+            if (!_tasksRepository.TaskExist(taskId))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var taskMap = _mapper.Map<Tasks>(updateTask);
+
+            if (!_tasksRepository.UpdateTask(taskMap))
+            {
+                ModelState.AddModelError("", "Hubo un error mientras se actualizaba, por favor intente más tarde");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{taskId}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
+        public IActionResult DeleteTask(int taskId)
+        {
+            if (!_tasksRepository.TaskExist(taskId))
+                return NotFound();
+
+            var TaskDelete = _tasksRepository.GetTask(taskId);
+
+            if (!_tasksRepository.DeleteTask(TaskDelete))
+            {
+                ModelState.AddModelError("", $"Algo salió mal al eliminar la compañía {TaskDelete.Name}");
+                return StatusCode(500, ModelState);
+            }
+
+            return NoContent();
         }
     }
 }

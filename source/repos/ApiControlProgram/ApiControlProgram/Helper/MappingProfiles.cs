@@ -13,6 +13,7 @@ namespace ApiControlProgram.Helper
 
             CreateMap<Project, ProjectDto>();
             CreateMap<ProjectDto, Project>();
+            CreateMap<ProjectUpdate, Project>();
 
             CreateMap<Tasks, TasksDto>();
             CreateMap<TasksDto, Tasks>();

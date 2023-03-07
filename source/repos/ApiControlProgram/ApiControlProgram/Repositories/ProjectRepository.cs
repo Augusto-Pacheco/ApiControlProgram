@@ -78,5 +78,17 @@ namespace ApiControlProgram.Repositories
            var saved = _context.SaveChanges();
             return saved > 0 ? true : false;
         }
+
+        public bool UpdateProject(Project project)
+        {
+            _context.Update(project);
+            return Save();
+        }
+
+        public bool DeleteProject(Project project)
+        {
+            _context.Remove(project);
+            return Save();
+        }
     }
 }

@@ -9,6 +9,8 @@ namespace ApiControlProgram.Interfaces
         Companies GetCompanyByName(string Name);
         bool CompanyExist(int CompanyId);
         bool CreateCompany(Companies companies);
+        bool UpdateCompany(Companies companies);
+        bool DeleteCompanies(Companies company);
         bool Save();
     }
 }

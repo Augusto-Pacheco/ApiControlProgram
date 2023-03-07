@@ -79,5 +79,17 @@ namespace ApiControlProgram.Repositories
         {
             return _context.tasks.Any(t => t.TaskId == TaskId);
         }
+
+        public bool UpdateTask(Tasks tasks)
+        {
+            _context.Update(tasks);
+            return Save();
+        }
+
+        public bool DeleteTask(Tasks tasks)
+        {
+            _context.Remove(tasks);
+            return Save();
+        }
     }
 }
