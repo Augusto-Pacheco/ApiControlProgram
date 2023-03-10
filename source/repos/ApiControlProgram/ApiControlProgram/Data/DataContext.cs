@@ -1,13 +1,14 @@
 ﻿using ApiControlProgram.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ApiControlProgram.Data
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
-        { 
+        {
         }
 
         public DbSet<Categories> Categories { get; set; }
@@ -23,7 +24,6 @@ namespace ApiControlProgram.Data
             modelBuilder.Entity<Project>().HasKey(p => p.ProjectId);
             modelBuilder.Entity<Tasks>().HasKey(t => t.TaskId);
             modelBuilder.Entity<Types>().HasKey(tp => tp.TypeId);
-
 
             modelBuilder.Entity<Companies>()
                 .HasMany(c => c.Projects)
@@ -44,7 +44,8 @@ namespace ApiControlProgram.Data
                 .HasOne(t => t.Categories)
                 .WithOne(c => c.Tasks)
                 .HasForeignKey<Categories>(c => c.CategoryId);
+
+            base.OnModelCreating(modelBuilder);
         }
     }
-
 }
