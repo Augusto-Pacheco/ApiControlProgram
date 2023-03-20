@@ -36,7 +36,16 @@ namespace ApiControlProgram.Migrations
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -304,41 +313,41 @@ namespace ApiControlProgram.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "AspNetRoleClaims");
+            //migrationBuilder.DropTable(
+            //    name: "AspNetRoleClaims");
 
-            migrationBuilder.DropTable(
-                name: "AspNetUserClaims");
+            //migrationBuilder.DropTable(
+            //    name: "AspNetUserClaims");
 
-            migrationBuilder.DropTable(
-                name: "AspNetUserLogins");
+            //migrationBuilder.DropTable(
+            //    name: "AspNetUserLogins");
 
-            migrationBuilder.DropTable(
-                name: "AspNetUserRoles");
+            //migrationBuilder.DropTable(
+            //    name: "AspNetUserRoles");
 
-            migrationBuilder.DropTable(
-                name: "AspNetUserTokens");
+            //migrationBuilder.DropTable(
+            //    name: "AspNetUserTokens");
 
-            migrationBuilder.DropTable(
-                name: "Categories");
+            //migrationBuilder.DropTable(
+            //    name: "Categories");
 
-            migrationBuilder.DropTable(
-                name: "types");
+            //migrationBuilder.DropTable(
+            //    name: "types");
 
-            migrationBuilder.DropTable(
-                name: "AspNetRoles");
+            //migrationBuilder.DropTable(
+            //    name: "AspNetRoles");
 
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
+            //migrationBuilder.DropTable(
+            //    name: "AspNetUsers");
 
-            migrationBuilder.DropTable(
-                name: "tasks");
+            //migrationBuilder.DropTable(
+            //    name: "tasks");
 
-            migrationBuilder.DropTable(
-                name: "projects");
+            //migrationBuilder.DropTable(
+            //    name: "projects");
 
-            migrationBuilder.DropTable(
-                name: "Companies");
+            //migrationBuilder.DropTable(
+            //    name: "Companies");
         }
     }
 }

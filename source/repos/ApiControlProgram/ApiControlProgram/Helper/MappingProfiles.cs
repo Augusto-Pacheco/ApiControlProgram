@@ -23,6 +23,9 @@ namespace ApiControlProgram.Helper
 
             CreateMap<Types, TypesDto>();
             CreateMap<TypesDto, Types>();
+
+            CreateMap<ApplicationUser, UserDto>();
+            CreateMap<UserDto, ApplicationUser>();
         }
     }
 }

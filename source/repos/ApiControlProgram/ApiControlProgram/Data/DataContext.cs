@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using Microsoft.AspNetCore.Identity;
 
 namespace ApiControlProgram.Data
 {
@@ -16,14 +17,33 @@ namespace ApiControlProgram.Data
         public DbSet<Project> projects { get; set; }
         public DbSet<Tasks> tasks { get; set; }
         public DbSet<Types> types { get; set; }
+        public DbSet<ApplicationUser> users { get; set; }
+        public DbSet<ApplicationRole> roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ApplicationUser>().HasKey(u => u.Id);
+
             modelBuilder.Entity<Companies>().HasKey(c => c.CompanyId);
             modelBuilder.Entity<Categories>().HasKey(c => c.CategoryId);
             modelBuilder.Entity<Project>().HasKey(p => p.ProjectId);
             modelBuilder.Entity<Tasks>().HasKey(t => t.TaskId);
             modelBuilder.Entity<Types>().HasKey(tp => tp.TypeId);
+
+            modelBuilder.Entity<IdentityUser>().Ignore(c => c.AccessFailedCount)
+                                               .Ignore(c => c.ConcurrencyStamp)
+                                               .Ignore(c => c.EmailConfirmed)
+                                               .Ignore(c => c.LockoutEnabled)
+                                               .Ignore(c => c.LockoutEnd)
+                                               .Ignore(c => c.PhoneNumber)
+                                               .Ignore(c => c.PhoneNumberConfirmed)
+                                               .Ignore(c => c.SecurityStamp)
+                                               .Ignore(c => c.TwoFactorEnabled);
+
+            modelBuilder.Entity<IdentityRole>().Ignore(r => r.ConcurrencyStamp)
+                                               .Ignore(r => r.NormalizedName);
 
             modelBuilder.Entity<Companies>()
                 .HasMany(c => c.Projects)

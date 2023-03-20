@@ -37,11 +37,6 @@ namespace ApiControlProgram.Repositories
             }
         }
 
-        //public Companies GetCompany(string Name)
-        //{
-        //    return _context.Companies.Where(p => p.Name == Name).FirstOrDefault();
-        //}
-
         public ICollection<Companies> GetCompanies()
         {
             try
